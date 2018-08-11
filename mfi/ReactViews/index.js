@@ -11,6 +11,16 @@ function Chart(props) {
     },
   };
 
+  const GoBack = <Button onClick={() => props.select('daily')}>Back</Button>;
+
+  return (<div>
+    <h4>{props.dailyOrHourly}</h4>
+    <div>{props.datasetLabel == 'hourly' && GoBack}</div>
+    <LineChart
+      data={data}
+      getPointsAtEvent={props.datasetLabel == 'daily' ? () => props.select('hourly') : () => null}
+    />
+  </div>);
   return <LineChart data=data />
 }
 

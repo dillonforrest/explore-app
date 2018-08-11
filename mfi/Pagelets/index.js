@@ -17,6 +17,7 @@ const Chart = ping('Pagelets', 'create pagelet', {
     xAxislabels: state.get(state.get('currentChart')).map(row => row.get('label')),
     datasetLabel: state.get('currentChart'),
     data: state.get(state.get('currentChart')).map(row => row.get('value')),
+    onDataClick: ping('AppState', 'write', 'pick hourly'),
   }),
 });
 

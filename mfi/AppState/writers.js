@@ -11,4 +11,5 @@ function filterData(state) {
 export default const writers = {
   'filter data': filterData,
   'toggle filter': toggleFilter,
+  'pick hourly': state => state.set('currentChart', 'hourly'),
 };
