@@ -1,6 +1,7 @@
 import { ping } from 'lambdagrid-mfi';
 import { LineChart } from 'lambdagrid-mfi/react-chartjs';
 import { FormGroup, Input, Label, Button } from 'lambdagrid-mfi/reactstrap';
+import { BulletList } from 'react-content-loader';
 
 function Chart(props) {
   const data = {
@@ -46,7 +47,7 @@ function Checkboxes(props) {
   }
 
   return (<div>
-    {props.filters.map(Checkbox)}
+    {props.isFetching ? <BulletList /> : props.filters.map(Checkbox)}
     <Button onClick={props.filterData}>Add</Button>
   </div>);
 }

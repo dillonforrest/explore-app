@@ -10,6 +10,7 @@ const Filters = ping('Pagelets', 'create pagelet', {
     filters: state.get('filters'),
     filterData: ping('AppState', 'write', 'filter data'),
     toggleFilter: ping('AppState', 'write', 'toggle filter'),
+    isFetching: state.getIn(['readers fetching', 'filters']),
   }),
 });
 
@@ -25,7 +26,7 @@ const Chart = ping('Pagelets', 'create pagelet', {
     datasetLabel: state.get('currentChart'),
     data: state.get(state.get('currentChart')).map(row => row.get('value')),
     onDataClick: ping('AppState', 'write', 'pick hourly'),
-    isFetching: state.hasIn(['readers fetching', `${state.get('currentChart')} data`]),
+    isFetching: state.getIn(['readers fetching', `${state.get('currentChart')} data`]),
   }),
 });
 
