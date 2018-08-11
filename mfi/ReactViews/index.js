@@ -4,20 +4,26 @@ import { FormGroup, Input, Label, Button } from 'lambdagrid-mfi/reactstrap';
 
 function Chart(props) {
   const data = {
-    labels: props.xAxislabels,
+    labels: props.xAxisLabels,
     datasets: {
       label: props.datasetLabel,
       data: props.data,
     },
   };
 
+  const fetchingData = {
+    datasets: {
+      data: [10, 17, 20, 11, 6, 15, 16, 13],
+    }
+  };
+
   const GoBack = <Button onClick={() => props.select('daily')}>Back</Button>;
 
   return (<div>
-    <h4>{props.dailyOrHourly}</h4>
+    <h4>{props.isFetching ? "loading..." : props.dailyOrHourly}</h4>
     <div>{props.datasetLabel == 'hourly' && GoBack}</div>
     <LineChart
-      data={data}
+      data={props.isFetching ? fetchingData : data}
       getPointsAtEvent={props.datasetLabel == 'daily' ? () => props.select('hourly') : () => null}
     />
   </div>);
